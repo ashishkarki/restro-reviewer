@@ -1,6 +1,14 @@
 import { ReactElement } from 'react'
 
-import Restaurant from '../models/Restaurant'
+import {
+  Heading2,
+  Heading3,
+  RestaurantListContainer as Container,
+  RestaurantList as List,
+  RestaurantListItem as ListItem,
+} from '../styles'
+import { sampleRestaurants } from '../sampleData'
+import { Link } from 'react-router-dom'
 
 /**
  * Renders a list of restaurants.
@@ -9,30 +17,29 @@ import Restaurant from '../models/Restaurant'
  */
 const RestaurantList: React.FC = (): ReactElement => {
   // TODO: fetch restro data using graphql queries
+  const restros = sampleRestaurants
 
   // Display the list of restros
-  const restros: Restaurant[] = [
-    { id: 1, name: 'The Fancy Fork', cuisine: 'French' },
-    { id: 2, name: 'Sushi Sunset', cuisine: 'Japanese' },
-    { id: 3, name: 'Curry Corner', cuisine: 'Indian' },
-  ]
-
   return (
-    <div>
-      <h2>Retros in your area</h2>
+    <Container>
+      <Heading2>Retros in your area</Heading2>
       {/* display a list of restros using some hardcoded data */}
 
-      <h2>Retros in your area</h2>
+      <Heading3>Retros in your area</Heading3>
 
-      <ul>
+      <List>
         {restros.map((restro) => (
-          <li
-            key={restro.id}
-            onClick={() => console.log(restro)}
-          >{`${restro.name} - ${restro.cuisine}`}</li>
+          <ListItem key={restro.id} onClick={() => console.log(restro)}>
+            <Link
+              to={`/restaurants/${restro.id}`}
+              state={{ restaurant: restro }}
+            >
+              {`${restro.name} - ${restro.cuisine}`}
+            </Link>
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Container>
   )
 }
 

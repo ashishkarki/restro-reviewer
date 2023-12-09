@@ -1,4 +1,4 @@
-import { Container, Heading1, Heading3 } from '../styles/HomeStyles'
+import { HomeContainer as Container, Heading1, Heading3 } from '../styles'
 
 const Home: React.FC = () => {
   return (

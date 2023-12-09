@@ -1,31 +1,40 @@
+import { ReactNode } from 'react'
 import Restaurant from '../models/Restaurant'
-
-interface RestaurantDetailsProps {
-  restaurant: Restaurant
-}
+import {
+  RestaurantDetailsContainer as Container,
+  RestaurantDetailsParagraph as P,
+  RestaurantDetailsReviewItem as ReviewItem,
+  Heading2,
+} from '../styles'
+import { useLocation } from 'react-router-dom'
 
 /**
  * Renders the details of a restaurant.
- *
- * @param {RestaurantDetailsProps} props - The props object containing the restaurant details.
- * @return {ReactNode} The rendered details of the restaurant.
  */
-const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({
-  restaurant,
-}) => {
+const RestaurantDetails: React.FC = () => {
+  const location = useLocation()
+  const restaurant = location.state?.restaurant
+  const {
+    name,
+    cuisine,
+    location: restaurantLocation,
+    ratings,
+    reviews,
+  } = restaurant
+
   return (
-    <div>
-      <h2>{restaurant.name}</h2>
-      <p>Cuisine: {restaurant.cuisine}</p>
-      <p>Location: {restaurant.location}</p>
-      <p>Ratings: {restaurant.ratings}</p>
-      <p>Reviews:</p>
-      <ul>
-        {restaurant.reviews?.map((review, index) => (
-          <li key={index}>{review}</li>
+    <Container>
+      <Heading2>{name}</Heading2>
+      <P>Cuisine: {cuisine}</P>
+      <P>Location: {restaurantLocation}</P>
+      <P>Ratings: {ratings}</P>
+      <P>Reviews:</P>
+      <P>
+        {reviews?.map((review: string, index: number) => (
+          <ReviewItem key={index}>{review}</ReviewItem>
         ))}
-      </ul>
-    </div>
+      </P>
+    </Container>
   )
 }
 
