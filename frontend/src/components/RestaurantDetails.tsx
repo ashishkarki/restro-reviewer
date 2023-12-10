@@ -1,5 +1,3 @@
-import { ReactNode } from 'react'
-import Restaurant from '../models/Restaurant'
 import {
   RestaurantDetailsContainer as Container,
   RestaurantDetailsParagraph as P,

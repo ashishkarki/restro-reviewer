@@ -90,14 +90,7 @@ export const RestaurantDetailsParagraph = styled.p`
 
 export const RestaurantDetailsReviewItem = styled.li`
   margin-bottom: 5px;
-  border: 1px solid #ccc; /* Add border for card-like appearance */
+  border: 1px solid #ccd; /* Add border for card-like appearance */
   border-radius: 5px; /* Rounded corners for the card */
   padding: 10px; /* Padding for inner content */
-  transition: transform 0.3s ease-in-out; /* Adding a transition effect */
-  cursor: pointer; /* Change cursor on hover */
-
-  &:hover {
-    transform: translateY(-5px); /* Move the card up slightly on hover */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  }
 `

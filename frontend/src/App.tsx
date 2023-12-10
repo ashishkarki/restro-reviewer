@@ -6,6 +6,7 @@ import Home from './components/Home'
 import RestaurantList from './components/RestaurantList'
 import RestaurantDetails from './components/RestaurantDetails'
 import RestaurantReview from './components/RestaurantReview'
+import NavBar from './components/NavBar'
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,8 @@ const App: React.FC = () => {
       <GlobalStyles />
 
       <Router>
+        <NavBar />
+
         <Routes>
           <Route path='/' element={<Home />} />
 
