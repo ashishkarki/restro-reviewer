@@ -7,6 +7,7 @@ import RestaurantList from './components/RestaurantList'
 import RestaurantDetails from './components/RestaurantDetails'
 import RestaurantReview from './components/RestaurantReview'
 import NavBar from './components/NavBar'
+import { PATHS } from './utils'
 
 const App: React.FC = () => {
   return (
@@ -17,14 +18,17 @@ const App: React.FC = () => {
         <NavBar />
 
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path={PATHS.HOME} element={<Home />} />
 
-          <Route path='/restaurants' element={<RestaurantList />} />
-
-          <Route path='/restaurants/:id' element={<RestaurantDetails />} />
+          <Route path={PATHS.RESTAURANTS} element={<RestaurantList />} />
 
           <Route
-            path='/review'
+            path={PATHS.RESTAURANT_DETAILS}
+            element={<RestaurantDetails />}
+          />
+
+          <Route
+            path={PATHS.REVIEW}
             element={<RestaurantReview restaurantName='The Fancy Fork' />}
           />
         </Routes>

@@ -2,13 +2,12 @@ import { ReactElement } from 'react'
 
 import {
   Heading2,
-  Heading3,
   RestaurantListContainer as Container,
   RestaurantList as List,
   RestaurantListItem as ListItem,
 } from '../styles'
-import { sampleRestaurants } from '../sampleData'
 import { Link } from 'react-router-dom'
+import { useGetAllRestaurants } from '../state/restaurantSelectors'
 
 /**
  * Renders a list of restaurants.
@@ -17,15 +16,12 @@ import { Link } from 'react-router-dom'
  */
 const RestaurantList: React.FC = (): ReactElement => {
   // TODO: fetch restro data using graphql queries
-  const restros = sampleRestaurants
+  const restros = useGetAllRestaurants()
 
   // Display the list of restros
   return (
     <Container>
       <Heading2>Retros in your area</Heading2>
-      {/* display a list of restros using some hardcoded data */}
-
-      <Heading3>Retros in your area</Heading3>
 
       <List>
         {restros.map((restro) => (

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 
 // global Styles
@@ -5,6 +6,22 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Roboto Serif', serif;
   }
+`
+
+// Common styles
+export const Heading1 = styled.h1`
+  color: #333;
+  font-size: 2rem;
+`
+
+export const Heading2 = styled.h2`
+  color: #444;
+  font-size: 1.5rem;
+`
+
+export const Heading3 = styled.h3`
+  color: #555;
+  font-size: 1.2rem;
 `
 
 // Styles for Home.tsx
@@ -22,19 +39,16 @@ export const HomeContainer = styled.div`
   background: linear-gradient(to bottom, #ffffff, #f2f2f2);
 `
 
-export const Heading1 = styled.h1`
-  color: #333;
-  font-size: 2rem;
-`
-
-export const Heading2 = styled.h2`
-  color: #444;
-  font-size: 1.5rem;
-`
-
-export const Heading3 = styled.h3`
-  color: #555;
+export const HomeParagraph = styled.p`
   font-size: 1.2rem;
+  color: #777;
+  margin-bottom: 20px;
+`
+
+export const LinkStyled = styled.a`
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
 `
 
 // styles for RestaurantList.tsx
@@ -93,4 +107,19 @@ export const RestaurantDetailsReviewItem = styled.li`
   border: 1px solid #ccd; /* Add border for card-like appearance */
   border-radius: 5px; /* Rounded corners for the card */
   padding: 10px; /* Padding for inner content */
+`
+
+export const BackButton = styled(Link)`
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #555;
+  }
 `

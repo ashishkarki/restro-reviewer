@@ -3,8 +3,9 @@ interface Restaurant {
   name: string
   cuisine: string
   location?: string
-  ratings?: number
   reviews?: string[]
+  ratings?: number[]
+  averageRating?: number
 }
 
 export default Restaurant
