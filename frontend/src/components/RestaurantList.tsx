@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useMemo, useState } from 'react'
 
 import {
   Heading2,
@@ -7,7 +7,7 @@ import {
   RestaurantListItem as ListItem,
 } from '../styles'
 import { Link } from 'react-router-dom'
-import { useGetAllRestaurants } from '../state/restaurantSelectors'
+import { useGetAllRestaurants } from '../state/storeSelectors'
 
 /**
  * Renders a list of restaurants.
@@ -15,8 +15,21 @@ import { useGetAllRestaurants } from '../state/restaurantSelectors'
  * @return {ReactElement} The list of restaurants as a React element.
  */
 const RestaurantList: React.FC = (): ReactElement => {
+  const [restaurantLoaded, setRestaurantLoaded] = useState(false)
+
   // TODO: fetch restro data using graphql queries
   const restros = useGetAllRestaurants()
+
+  useEffect(() => {
+    if (restros) {
+      setRestaurantLoaded(true)
+    }
+  }, [restros])
+
+  if (!restaurantLoaded) {
+    // Render loading state
+    return <div>Loading...</div>
+  }
 
   // Display the list of restros
   return (

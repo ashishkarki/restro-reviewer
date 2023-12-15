@@ -3,7 +3,7 @@ import {
   Heading1,
   Heading3,
   HomeParagraph as Paragraph,
-  LinkStyled,
+  HomeLinkStyled as Link,
 } from '../styles'
 import { PATHS } from '../utils'
 
@@ -21,8 +21,8 @@ const Home: React.FC = () => {
 
       <Paragraph>
         Start your journey by checking out the{' '}
-        <LinkStyled href={PATHS.RESTAURANTS}>restaurants</LinkStyled> or{' '}
-        <LinkStyled href={PATHS.REVIEW}>share your reviews</LinkStyled> with us!
+        <Link href={PATHS.RESTAURANTS}>restaurants</Link> or{' '}
+        <Link href={PATHS.REVIEW}>share your reviews</Link> with us!
       </Paragraph>
     </Container>
   )

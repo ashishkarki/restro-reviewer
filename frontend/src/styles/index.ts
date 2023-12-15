@@ -24,6 +24,39 @@ export const Heading3 = styled.h3`
   font-size: 1.2rem;
 `
 
+export const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+`
+
+export const BackButton = styled(Link)`
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: #555;
+  }
+`
+
+export const ActionButton = styled.button`
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+`
+
 // Styles for Home.tsx
 export const HomeContainer = styled.div`
   display: flex;
@@ -45,7 +78,7 @@ export const HomeParagraph = styled.p`
   margin-bottom: 20px;
 `
 
-export const LinkStyled = styled.a`
+export const HomeLinkStyled = styled.a`
   color: #007bff;
   text-decoration: none;
   margin-right: 5px;
@@ -109,17 +142,55 @@ export const RestaurantDetailsReviewItem = styled.li`
   padding: 10px; /* Padding for inner content */
 `
 
-export const BackButton = styled(Link)`
-  display: inline-block;
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
+// styles for RestaurantReview page
+export const RestaurantReviewContainer = styled.div`
+  border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 20px;
-  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #ffffff, #f2f2f2);
 
-  &:hover {
-    background-color: #555;
-  }
+  padding: 15px;
+  max-width: 800px;
+  margin: 20px auto;
+`
+
+export const RestaurantReviewForm = styled.form`
+  margin-top: 20px;
+`
+
+export const RestaurantReviewLabel = styled.label`
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+`
+
+export const RestaurantReviewTextArea = styled.textarea`
+  width: 90%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+`
+
+export const RestaurantReviewCharCount = styled.p`
+  margin: 5px auto;
+  font-size: 0.8rem;
+  color: #888;
+`
+
+export const RestaurantReviewBackButton = styled.button`
+  padding: 5px 10px;
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`
+
+export const RestaurantReviewNumberInput = styled.input`
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 `

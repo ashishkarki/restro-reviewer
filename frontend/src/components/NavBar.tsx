@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+
+  align-items: center;
   background-color: #333;
   padding: 10px;
 `
@@ -55,9 +62,9 @@ const NavBar: React.FC = () => {
           <NavLink to='/restaurants'>Restaurants</NavLink>
         </LI>
 
-        <LI>
+        {/* <LI>
           <NavLink to='/review'>Post Review</NavLink>
-        </LI>
+        </LI> */}
       </UL>
     </Nav>
   )

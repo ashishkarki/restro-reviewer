@@ -27,10 +27,7 @@ const App: React.FC = () => {
             element={<RestaurantDetails />}
           />
 
-          <Route
-            path={PATHS.REVIEW}
-            element={<RestaurantReview restaurantName='The Fancy Fork' />}
-          />
+          <Route path={PATHS.REVIEW} element={<RestaurantReview />} />
         </Routes>
       </Router>
     </>

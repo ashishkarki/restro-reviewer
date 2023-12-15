@@ -1,23 +1,106 @@
-interface RestaurantReviewProps {
-  restaurantName: string
-}
+import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { PATHS } from '../utils'
+import {
+  RestaurantReviewContainer as Container,
+  RestaurantReviewForm as Form,
+  Heading2,
+  RestaurantReviewLabel as Label,
+  RestaurantReviewTextArea as TextArea,
+  RestaurantReviewCharCount as CharCount,
+  ButtonsContainer,
+  ActionButton as SubmitReviewButton,
+  BackButton,
+  RestaurantReviewNumberInput as NumberInput,
+} from '../styles'
+import Restaurant from '../models/Restaurant'
+import { useStore } from '../state/store'
 
-const RestaurantReview: React.FC<RestaurantReviewProps> = ({
-  restaurantName,
-}) => {
+const RestaurantReview: React.FC<{}> = () => {
+  const [review, setReview] = useState<string>('')
+  const [rating, setRating] = useState<number>(1)
+
+  const location = useLocation()
+  const restaurant = location.state?.restaurant as Restaurant
+  const restaurantName = restaurant?.name as string
+
+  const navigate = useNavigate()
+  const addReview = useStore((state) => state.addReview)
+
+  const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(e.target.value)
+  }
+
+  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRating(parseFloat(e.target.value))
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // submit the review via the store
+    addReview(restaurant.id, review, rating)
+
+    // navigate back to the restaurant list page
+    const restaurantWithNewReview = {
+      ...restaurant,
+      reviews: [...(restaurant.reviews || []), review],
+      ratings: [...(restaurant.ratings || []), rating],
+    }
+    navigate(`${PATHS.RESTAURANTS}/${restaurant.id}`, {
+      state: {
+        restaurant: restaurantWithNewReview,
+      },
+    })
+  }
+
   return (
-    <div>
-      <h2>Restaurant Review</h2>
+    <Container>
+      <Heading2>Restaurant Review</Heading2>
       <p>Review for: {restaurantName}</p>
 
-      {/* add sample reviews for this restaurant */}
-      <p>Reviews:</p>
-      <ul>
-        <li>Review 1</li>
-        <li>Review 2</li>
-        <li>Review 3</li>
-      </ul>
-    </div>
+      <Form onSubmit={handleSubmit}>
+        <Label htmlFor='review'>
+          Write your review here (max 500 characters):
+        </Label>
+
+        <TextArea
+          id='review'
+          name='review'
+          value={review}
+          onChange={handleReviewChange}
+          maxLength={500}
+          rows={5}
+          required
+        />
+
+        <CharCount>Characters left: {500 - review.length}</CharCount>
+
+        <Label htmlFor='rating'>Rating:</Label>
+        <NumberInput
+          type='number'
+          min='1'
+          max='5'
+          step='0.5'
+          value={rating}
+          onChange={handleRatingChange}
+        />
+
+        <ButtonsContainer>
+          <SubmitReviewButton type='submit'>
+            Submit Your Review
+          </SubmitReviewButton>
+          <BackButton
+            to={`${PATHS.RESTAURANTS}/${restaurant.id}`}
+            state={{
+              restaurant: restaurant,
+            }}
+          >
+            Back to {restaurant.name}
+          </BackButton>
+        </ButtonsContainer>
+      </Form>
+    </Container>
   )
 }
 
