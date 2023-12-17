@@ -8,6 +8,8 @@ import {
 } from '../styles'
 import { Link } from 'react-router-dom'
 import { useGetAllRestaurants } from '../state/storeSelectors'
+import { useStore } from '../state/store'
+import ErrorPage from './ErrorPage'
 
 /**
  * Renders a list of restaurants.
@@ -15,20 +17,21 @@ import { useGetAllRestaurants } from '../state/storeSelectors'
  * @return {ReactElement} The list of restaurants as a React element.
  */
 const RestaurantList: React.FC = (): ReactElement => {
-  const [restaurantLoaded, setRestaurantLoaded] = useState(false)
-
-  // TODO: fetch restro data using graphql queries
-  const restros = useGetAllRestaurants()
+  // const restaurants = useGetAllRestaurants()
+  const { restaurants, loading, error, getRestaurants } = useStore()
 
   useEffect(() => {
-    if (restros) {
-      setRestaurantLoaded(true)
-    }
-  }, [restros])
+    getRestaurants()
+  }, [getRestaurants])
 
-  if (!restaurantLoaded) {
+  if (loading) {
     // Render loading state
     return <div>Loading...</div>
+  }
+
+  if (error) {
+    // Render error state
+    return <ErrorPage error={error} />
   }
 
   // Display the list of restros
@@ -37,7 +40,7 @@ const RestaurantList: React.FC = (): ReactElement => {
       <Heading2>Retros in your area</Heading2>
 
       <List>
-        {restros.map((restro) => (
+        {restaurants.map((restro) => (
           <ListItem key={restro.id} onClick={() => console.log(restro)}>
             <Link
               to={`/restaurants/${restro.id}`}
