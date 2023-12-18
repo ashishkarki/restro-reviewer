@@ -18,9 +18,9 @@ export class RestaurantsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Restaurant | HttpException {
+  async findOne(@Param('id') id: string): Promise<Restaurant | HttpException> {
     const restaurantId = parseInt(id, 10);
-    const restaurant = this.restaurantsService.findOne(restaurantId);
+    const restaurant = await this.restaurantsService.findOne(restaurantId);
 
     if (!restaurant) {
       throw new HttpException(

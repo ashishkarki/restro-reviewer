@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 import Restaurant from '../models/Restaurant'
-import { sampleRestaurants } from '../sampleData'
 import apolloClient from '../graphql/apolloClient'
 import {
   GET_ALL_RESTAURANTS,
   GET_RESTAURANT_BY_ID,
 } from '../graphql/restaurant.queries'
 import { ApolloError } from '@apollo/client'
+import { ADD_REVIEW_MUTATION } from '../graphql/review.queries'
 
 export type AppState = {
   restaurants: Restaurant[]
@@ -60,33 +60,51 @@ export const useStore = create<AppState>((set) => ({
       set({ error: error as ApolloError, loading: false })
     }
   },
-  addReview: (restaurantId: number, review: string, rating: number) => {
-    set((state) => ({
-      restaurants: state.restaurants.map((restaurant) => {
-        if (restaurant.id === restaurantId) {
-          const newReviews = [...(restaurant.reviews || []), review]
-          const newRatings = [...(restaurant.ratings || []), rating]
+  addReview: async (
+    restaurantId: number,
+    reviewText: string,
+    rating: number
+  ) => {
+    try {
+      const { data } = await apolloClient.mutate({
+        mutation: ADD_REVIEW_MUTATION,
+        variables: {
+          restaurantId,
+          reviewText,
+          rating,
+        },
+      })
 
-          const newAverageRating =
-            newRatings.reduce((total, rating) => total + rating, 0) /
-            newRatings.length
+      set((state) => ({
+        restaurants: state.restaurants.map((restaurant) => {
+          if (restaurant.id === restaurantId) {
+            const newReviews = [...(restaurant.reviews || []), reviewText]
+            const newRatings = [...(restaurant.ratings || []), rating]
 
-          // normalize the ratings so it is between 1 and 5 inclusive
-          const normalizedAverageRating = Math.min(
-            Math.max(newAverageRating, 1),
-            5
-          )
+            const newAverageRating =
+              newRatings.reduce((total, rating) => total + rating, 0) /
+              newRatings.length
 
-          return {
-            ...restaurant,
-            reviews: newReviews,
-            ratings: newRatings,
-            averageRating: normalizedAverageRating,
+            // normalize the ratings so it is between 1 and 5 inclusive
+            const normalizedAverageRating = Math.min(
+              Math.max(newAverageRating, 1),
+              5
+            )
+
+            return {
+              ...restaurant,
+              reviews: newReviews,
+              ratings: newRatings,
+              averageRating: normalizedAverageRating,
+            }
+          } else {
+            return restaurant
           }
-        } else {
-          return restaurant
-        }
-      }),
-    }))
+        }),
+      }))
+    } catch (error) {
+      console.error(`Error adding review: ${error}`)
+      set({ error: error as ApolloError, loading: false })
+    }
   },
 }))

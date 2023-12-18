@@ -17,7 +17,7 @@ import Restaurant from '../models/Restaurant'
 import { useStore } from '../state/store'
 
 const RestaurantReview: React.FC<{}> = () => {
-  const [review, setReview] = useState<string>('')
+  const [reviewText, setReviewText] = useState<string>('')
   const [rating, setRating] = useState<number>(1)
 
   const location = useLocation()
@@ -28,7 +28,7 @@ const RestaurantReview: React.FC<{}> = () => {
   const addReview = useStore((state) => state.addReview)
 
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReview(e.target.value)
+    setReviewText(e.target.value)
   }
 
   const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,12 +39,12 @@ const RestaurantReview: React.FC<{}> = () => {
     e.preventDefault()
 
     // submit the review via the store
-    addReview(restaurant.id, review, rating)
+    addReview(restaurant.id, reviewText, rating)
 
     // navigate back to the restaurant list page
     const restaurantWithNewReview = {
       ...restaurant,
-      reviews: [...(restaurant.reviews || []), review],
+      reviews: [...(restaurant.reviews || []), reviewText],
       ratings: [...(restaurant.ratings || []), rating],
     }
     navigate(`${PATHS.RESTAURANTS}/${restaurant.id}`, {
@@ -67,14 +67,14 @@ const RestaurantReview: React.FC<{}> = () => {
         <TextArea
           id='review'
           name='review'
-          value={review}
+          value={reviewText}
           onChange={handleReviewChange}
           maxLength={500}
           rows={5}
           required
         />
 
-        <CharCount>Characters left: {500 - review.length}</CharCount>
+        <CharCount>Characters left: {500 - reviewText.length}</CharCount>
 
         <Label htmlFor='rating'>Rating:</Label>
         <NumberInput

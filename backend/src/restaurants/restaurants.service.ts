@@ -10,7 +10,7 @@ export class RestaurantsService {
     return this.restaurants;
   }
 
-  findOne(id: number): Restaurant {
+  async findOne(id: number): Promise<Restaurant> {
     return this.restaurants.find((restaurant) => restaurant.id === id);
   }
 }
