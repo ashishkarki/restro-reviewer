@@ -1,7 +1,7 @@
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
 
 import { RestaurantsService } from './restaurants.service';
-import { Restaurant } from './restaurant.entity';
+import { Restaurant } from './models/restaurant.entity';
 
 @Resolver(Restaurant)
 export class RestaurantsResolver {

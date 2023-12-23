@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Restaurant } from 'src/restaurants/restaurant.entity';
+import { Restaurant } from 'src/restaurants/models/restaurant.entity';
 
 @ObjectType()
 export class Review {

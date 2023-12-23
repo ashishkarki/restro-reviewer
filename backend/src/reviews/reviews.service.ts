@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Review } from './review.entity';
+import { Review } from './models/review.entity';
 import { RestaurantsService } from 'src/restaurants/restaurants.service';
 
 @Injectable()

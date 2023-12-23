@@ -1,5 +1,5 @@
 import { Args, Int, Mutation, Resolver } from '@nestjs/graphql';
-import { Review } from './review.entity';
+import { Review } from './models/review.entity';
 import { ReviewsService } from './reviews.service';
 
 @Resolver(Review)
