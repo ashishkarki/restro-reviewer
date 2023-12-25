@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-import { RestaurantsService } from './restaurants.service';
-// import { RestaurantsController } from './restaurants.controller';
 import { RestaurantsResolver } from './restaurants.resolver';
+import { DynamoDBModule } from 'src/dynamodb/dynamodb.module';
 
 @Module({
-  providers: [RestaurantsResolver, RestaurantsService],
-  // controllers: [RestaurantsController],
-  exports: [RestaurantsService],
+  imports: [DynamoDBModule],
+  providers: [RestaurantsResolver],
 })
 export class RestaurantsModule {}

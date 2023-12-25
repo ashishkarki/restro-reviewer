@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { Review } from './models/review.entity';
 import { RestaurantsService } from 'src/restaurants/restaurants.service';
 
+/**
+ * @deprecated This service is no longer used in favor of GraphQL resolvers and DynamoDBService.
+ */
 @Injectable()
 export class ReviewsService {
   constructor(private readonly restaurantService: RestaurantsService) {}

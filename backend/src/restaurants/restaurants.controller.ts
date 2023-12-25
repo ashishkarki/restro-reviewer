@@ -8,6 +8,9 @@ import {
 import { RestaurantsService } from './restaurants.service';
 import Restaurant from './models/restaurant.model';
 
+/**
+ * @deprecated This service is no longer used in favor of GraphQL resolvers and DynamoDBService.
+ */
 @Controller('restaurants')
 export class RestaurantsController {
   constructor(private readonly restaurantsService: RestaurantsService) {}

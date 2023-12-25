@@ -2,6 +2,9 @@ import { Args, Int, Mutation, Resolver } from '@nestjs/graphql';
 import { Review } from './models/review.entity';
 import { ReviewsService } from './reviews.service';
 
+/**
+ * @deprecated This service is no longer used in favor of GraphQL resolvers and DynamoDBService.
+ */
 @Resolver(Review)
 export class ReviewResolver {
   constructor(private readonly reviewService: ReviewsService) {}
