@@ -1,21 +1,20 @@
-import { Args, Int, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Review } from './models/review.entity';
-import { ReviewsService } from './reviews.service';
+import { DynamoDBService } from 'src/dynamodb/dynamodb.service';
+import { AddReviewDto } from './dtos/add-review.dto';
+import { Restaurant } from 'src/restaurants/models/restaurant.entity';
 
-/**
- * @deprecated This service is no longer used in favor of GraphQL resolvers and DynamoDBService.
- */
 @Resolver(Review)
 export class ReviewResolver {
-  constructor(private readonly reviewService: ReviewsService) {}
+  constructor(private readonly dynamoDBService: DynamoDBService) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Mutation((returns) => Review, { name: 'addReview' })
   async addReview(
-    @Args('restaurantId', { type: () => Int }) restaurantId: number,
-    @Args('reviewText') reviewText: string,
-    @Args('rating') rating: number,
-  ): Promise<Review> {
-    return await this.reviewService.addReview(restaurantId, reviewText, rating);
+    @Args('addReviewData') addReviewData: AddReviewDto,
+  ): Promise<Restaurant> {
+    const { restaurantId, reviewText, rating } = addReviewData;
+
+    return this.dynamoDBService.addReview(restaurantId, reviewText, rating);
   }
 }

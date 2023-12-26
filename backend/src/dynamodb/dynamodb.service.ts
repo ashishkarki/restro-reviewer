@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as AWS from 'aws-sdk';
-import Restaurant from 'src/restaurants/models/restaurant.model';
+import { Restaurant } from 'src/restaurants/models/restaurant.entity';
+
 import { RESTAURANT_TABLE_NAME } from 'src/utils';
 
 @Injectable()
@@ -15,7 +16,7 @@ export class DynamoDBService {
     });
 
     this.dynamoDB = new AWS.DynamoDB.DocumentClient({
-      endpoint: 'http://localhost:8000', // use DynamoDB on local instance
+      endpoint: 'http://dynamodb-local:8000', // use DynamoDB on local instance
     });
   }
 

@@ -1,0 +1,19 @@
+{
+  "name": "restro-reviewer",
+  "version": "1.0.0",
+  "author": "Ashish Karki",
+  "description": "Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript.",
+  "scripts": {
+    "start": "docker-compose up -d --build --remove-orphans",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "restaurant reviewer",
+    "react",
+    "node",
+    "typescript",
+    "aws sdk",
+    "AWS"
+  ],
+  "license": "ISC"
+}

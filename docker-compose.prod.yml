@@ -16,11 +16,6 @@ services:
     container_name: backend
     ports:
       - '4000:4000'
-    volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
     environment:
-      - NODE_ENV=development
-    command: npm run start:dev
-    depends_on:
-      - dynamodb-local
+      - NODE_ENV=production
+    # TODO: add production specific variables, configurations etc later

@@ -9,8 +9,19 @@ export const sampleRestaurants: Restaurant[] = [
     ratings: [4.5, 4.0, 4.2],
     averageRating: 4.3,
     reviews: [
-      'Great ambiance and delicious food!',
-      'The service was exceptional.',
+      {
+        id: 1,
+        restaurantId: 1,
+        reviewText: 'Great ambiance and delicious food!',
+        rating: 4,
+      },
+      {
+        id: 1,
+        restaurantId: 1,
+        reviewText: 'The service was exceptional.',
+        rating: 5,
+      },
+      ,
     ],
   },
   {
@@ -20,7 +31,14 @@ export const sampleRestaurants: Restaurant[] = [
     location: 'Tokyo, Japan',
     ratings: [4.0, 4.5],
     averageRating: 4.2,
-    reviews: ['Best sushi in town!', 'Amazing flavors and presentation.'],
+    reviews: [
+      {
+        id: 1,
+        restaurantId: 2,
+        reviewText: 'The sushi was fresh and delicious.',
+        rating: 4,
+      },
+    ],
   },
   {
     id: 3,
@@ -29,6 +47,25 @@ export const sampleRestaurants: Restaurant[] = [
     location: 'Mumbai, India',
     ratings: [3.5],
     averageRating: 3.6,
-    reviews: ['Authentic Indian flavors.', 'Spicy and flavorful dishes!'],
+    reviews: [
+      {
+        id: 1,
+        restaurantId: 3,
+        reviewText: 'The curry was very spicy.',
+        rating: 3,
+      },
+      {
+        id: 1,
+        restaurantId: 3,
+        reviewText: 'The service was slow.',
+        rating: 2,
+      },
+      {
+        id: 1,
+        restaurantId: 3,
+        reviewText: 'The food was great and happening.',
+        rating: 4.5,
+      },
+    ],
   },
 ];
