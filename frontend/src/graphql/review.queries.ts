@@ -1,20 +1,24 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const ADD_REVIEW_MUTATION = gql`
-  mutation AddReview($restaurantId: Int!, $reviewText: String!, $rating: Int!) {
-    addReview(
-      restaurantId: $restaurantId
-      reviewText: $review
-      rating: $rating
+    mutation AddReview(
+        $restaurantId: Int!
+        $reviewText: String!
+        $rating: Int!
     ) {
-      id
-      reviewText
-      rating
-      restaurantId
-      restaurant {
-        name
-        cuisine
-      }
+        addReview(
+            restaurantId: $restaurantId
+            reviewText: $review
+            rating: $rating
+        ) {
+            id
+            reviewText
+            rating
+            restaurantId
+            restaurant {
+                name
+                cuisine
+            }
+        }
     }
-  }
-`
+`;

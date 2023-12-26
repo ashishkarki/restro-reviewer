@@ -1,31 +1,33 @@
 import {
-  HomeContainer as Container,
-  Heading1,
-  Heading3,
-  HomeParagraph as Paragraph,
-  HomeLinkStyled as Link,
-} from '../styles'
-import { PATHS } from '../utils'
+    HomeContainer as Container,
+    Heading1,
+    Heading3,
+    HomeParagraph as Paragraph,
+    HomeLinkStyled as Link,
+} from '../styles';
+import { PATHS } from '../utils';
 
 const Home: React.FC = () => {
-  return (
-    <Container>
-      <Heading1>The Restro Reviewer</Heading1>
+    return (
+        <Container>
+            <Heading1>The Restro Reviewer</Heading1>
 
-      <Heading3>where the food and its roundabouts gets reviewed!!</Heading3>
+            <Heading3>
+                where the food and its roundabouts gets reviewed!!
+            </Heading3>
 
-      <Paragraph>
-        Welcome to The Restro Reviewer! Your go-to place to explore and review
-        various restaurants.
-      </Paragraph>
+            <Paragraph>
+                Welcome to The Restro Reviewer! Your go-to place to explore and
+                review various restaurants.
+            </Paragraph>
 
-      <Paragraph>
-        Start your journey by checking out the{' '}
-        <Link href={PATHS.RESTAURANTS}>restaurants</Link> or{' '}
-        <Link href={PATHS.REVIEW}>share your reviews</Link> with us!
-      </Paragraph>
-    </Container>
-  )
-}
+            <Paragraph>
+                Start your journey by checking out the{' '}
+                <Link href={PATHS.RESTAURANTS}>restaurants</Link> or{' '}
+                <Link href={PATHS.REVIEW}>share your reviews</Link> with us!
+            </Paragraph>
+        </Container>
+    );
+};
 
-export default Home
+export default Home;

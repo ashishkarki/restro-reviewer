@@ -1,19 +1,31 @@
 {
-  "name": "restro-reviewer",
-  "version": "1.0.0",
-  "author": "Ashish Karki",
-  "description": "Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript.",
-  "scripts": {
-    "start": "docker-compose up -d --build --remove-orphans",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "restaurant reviewer",
-    "react",
-    "node",
-    "typescript",
-    "aws sdk",
-    "AWS"
-  ],
-  "license": "ISC"
+    "name": "restro-reviewer",
+    "version": "1.0.0",
+    "author": "Ashish Karki",
+    "description": "Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript.",
+    "scripts": {
+        "start": "docker-compose up -d --build --remove-orphans",
+        "stop": "docker-compose down",
+        "lint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet",
+        "format": "prettier --write '*/**/*.{js,jsx,ts,tsx,json,css,md}'",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "restaurant reviewer",
+        "react",
+        "node",
+        "typescript",
+        "aws sdk",
+        "AWS"
+    ],
+    "license": "ISC",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^6.16.0",
+        "@typescript-eslint/parser": "^6.16.0",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.2",
+        "eslint-plugin-react": "^7.33.2",
+        "prettier": "^3.1.1"
+    }
 }
