@@ -1,26 +1,42 @@
 version: '3'
 services:
-  dynamodb-local:
-    image: amazon/dynamodb-local
-    container_name: dynamodb-local
-    ports:
-      - '8000:8000'
-    volumes:
-      - './data:/home/dynamodblocal/data'
-    command: '-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data'
+    dynamodb-local:
+        image: amazon/dynamodb-local
+        container_name: dynamodb-local
+        ports:
+            - '8000:8000'
+        volumes:
+            - './data:/home/dynamodblocal/data'
+        command: '-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data'
 
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend
-    ports:
-      - '4000:4000'
-    volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: npm run start:dev
-    depends_on:
-      - dynamodb-local
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: backend
+        ports:
+            - '4000:4000'
+        volumes:
+            - .:/usr/src/app
+            # - /usr/src/app/node_modules
+        environment:
+            - NODE_ENV=development
+        command: yarn start:dev
+        depends_on:
+            - dynamodb-local
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        container_name: frontend
+        ports:
+            - '3000:80'
+        volumes:
+            - ./frontend:/usr/src/app
+            # - /usr/src/app/node_modules
+        environment:
+            - NODE_ENV=development
+        # command: yarn start
+        depends_on:
+            - backend

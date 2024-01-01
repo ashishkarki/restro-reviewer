@@ -3,11 +3,17 @@
     "version": "1.0.0",
     "author": "Ashish Karki",
     "description": "Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript.",
+    "private": true,
+    "workspaces": [
+        "backend",
+        "frontend"
+    ],
     "scripts": {
         "start": "docker-compose up -d --build --remove-orphans",
         "stop": "docker-compose down",
         "lint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet",
         "format": "prettier --write '*/**/*.{js,jsx,ts,tsx,json,css,md}'",
+        "prepare": "husky install",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "lint-staged": {
@@ -16,7 +22,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "echo 'pre-commit hook running' && lint-staged"
         }
     },
     "keywords": [
@@ -38,5 +44,7 @@
         "husky": "^8.0.3",
         "lint-staged": "^15.2.0",
         "prettier": "^3.1.1"
-    }
+    },
+    "main": "index.js",
+    "repository": "https://github.com/ashishkarki/restro-reviewer.git"
 }

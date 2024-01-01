@@ -4,19 +4,25 @@ FROM node:20.10.0
 WORKDIR /usr/src/app
 
 # copy the package/package-lock.json files from local machine to the working directory in the docker container
-COPY package*.json ./
+COPY package*.json yarn*.json ./
 
 # install the dependencies within the docker container
-RUN npm install
+RUN yarn install
+# also install nest cli globally within the docker container
+RUN yarn global add @nestjs/cli
 
-# copy everything from the local machine to the working directory in the docker container
+# also copy the entire workspace so we have all nest etc packages
 COPY . .
 
+# Set the work directory to /app
+# WORKDIR /usr/src/app
+
 # build the project
-RUN npm run build
+RUN yarn build
 
 # expose the port 4000 in the docker container
-EXPOSE 4000
+# EXPOSE 4000
 
 # run the command to start the app
-CMD [ "npm", "run", "start:prod" ]
+# WORKDIR /usr/src
+CMD [ "yarn", "start:dev" ]
