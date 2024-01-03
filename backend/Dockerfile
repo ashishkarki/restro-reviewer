@@ -4,19 +4,20 @@ FROM node:20.10.0
 WORKDIR /usr/src/app
 
 # copy the package/package-lock.json files from local machine to the working directory in the docker container
-COPY package*.json ./
+COPY package*.json pnpm-lock.yaml ./
 
 # install the dependencies within the docker container
-RUN npm install
+RUN npm install -g pnpm
+RUN pnpm install --frozen-lockfile
 
-# copy everything from the local machine to the working directory in the docker container
+# copy the whole of backend to the working directory in the docker container
 COPY . .
 
 # build the project
-RUN npm run build
+RUN pnpm run build
 
 # expose the port 4000 in the docker container
 EXPOSE 4000
 
 # run the command to start the app
-CMD [ "npm", "run", "start:prod" ]
+CMD [ "pnpm", "run", "start:prod" ]

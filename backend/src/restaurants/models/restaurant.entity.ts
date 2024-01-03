@@ -1,4 +1,5 @@
 import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
+import { Location } from './location.entity';
 
 @ObjectType()
 export class Restaurant {
@@ -8,10 +9,10 @@ export class Restaurant {
   @Field()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   cuisine: string;
 
-  @Field({ nullable: true })
+  @Field(() => Location, { nullable: true })
   location?: string;
 
   @Field(() => [String], { nullable: true })
