@@ -23,8 +23,8 @@ const Home: React.FC = () => {
 
             <Paragraph>
                 Start your journey by checking out the{' '}
-                <Link href={PATHS.RESTAURANTS}>restaurants</Link> or{' '}
-                <Link href={PATHS.REVIEW}>share your reviews</Link> with us!
+                <Link href={PATHS.RESTAURANTS}>restaurants</Link> and <br />
+                sharing your reviews with us!
             </Paragraph>
         </Container>
     );

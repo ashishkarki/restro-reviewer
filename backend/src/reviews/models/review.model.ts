@@ -1,3 +1,6 @@
+/**
+ * @deprecated No need for Review model or entity
+ */
 interface Review {
   id: number;
   restaurantId: number;

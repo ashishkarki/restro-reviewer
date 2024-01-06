@@ -5,4 +5,7 @@ export const PATHS = {
     REVIEW: '/review',
 };
 
-export const API_URL = 'http://localhost:4000/graphql';
+const API_HOST = process.env.RUNNING_IN_DOCKER
+    ? 'dynamodb-local:4000'
+    : 'localhost:4001';
+export const API_URL = `http://${API_HOST}/graphql`;

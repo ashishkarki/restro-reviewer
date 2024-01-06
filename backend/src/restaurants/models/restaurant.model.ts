@@ -1,5 +1,8 @@
 import Review from 'src/reviews/models/review.model';
 
+/**
+ * @deprecated use Restaurant entity instead.
+ */
 interface Restaurant {
   id: number;
   name: string;

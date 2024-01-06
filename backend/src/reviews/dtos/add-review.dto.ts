@@ -1,5 +1,5 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
-import { IsInt, IsNotEmpty, IsString, Max, Min } from 'class-validator';
+import { Field, InputType } from '@nestjs/graphql';
+import { IsNotEmpty, IsNumber, IsString, Max, Min } from 'class-validator';
 
 @InputType()
 export class AddReviewDto {
@@ -13,10 +13,11 @@ export class AddReviewDto {
   @Field()
   reviewText: string;
 
-  @IsInt()
+  @IsNumber()
+  @IsNotEmpty()
   @Min(1)
   @Max(5)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Field((type) => Int)
+  @Field((type) => Number)
   rating: number;
 }

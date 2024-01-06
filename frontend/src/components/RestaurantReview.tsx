@@ -32,7 +32,8 @@ const RestaurantReview: React.FC<{}> = () => {
     };
 
     const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setRating(parseFloat(e.target.value));
+        const newRating = parseFloat(e.target.value);
+        setRating(isNaN(newRating) ? 1 : newRating);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -96,8 +97,7 @@ const RestaurantReview: React.FC<{}> = () => {
                         to={`${PATHS.RESTAURANTS}/${restaurant.id}`}
                         state={{
                             restaurant: restaurant,
-                        }}
-                    >
+                        }}>
                         Back to {restaurant.name}
                     </BackButton>
                 </ButtonsContainer>

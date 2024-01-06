@@ -1,11 +1,13 @@
 import {
     RestaurantDetailsContainer as Container,
     RestaurantDetailsParagraph as P,
+    RestaurantDetailsAddress as Address,
     RestaurantDetailsReviewItem as ReviewItem,
     Heading2,
     ButtonsContainer,
     BackButton,
     ActionButton as AddReviewButton,
+    Heading3,
 } from '../styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PATHS, renderStarRating } from '../utils';
@@ -58,7 +60,7 @@ const RestaurantDetails: React.FC = () => {
             <Heading2>{name}</Heading2>
 
             <P>Cuisine: {cuisine}</P>
-            <P>Location: {restaurantLocation}</P>
+
             <P>
                 Average Ratings:{' '}
                 {renderStarRating(
@@ -72,6 +74,31 @@ const RestaurantDetails: React.FC = () => {
                     <ReviewItem key={index}>{review}</ReviewItem>
                 ))}
             </P>
+
+            <Address>
+                <Heading3>Location:</Heading3>
+                {restaurantLocation ? (
+                    <div>
+                        <div>
+                            {restaurantLocation.streetNumber}{' '}
+                            {restaurantLocation.streetName}
+                        </div>
+                        {restaurantLocation.aptUnit && (
+                            <span>{restaurantLocation.aptUnit}</span>
+                        )}
+                        <div>
+                            {restaurantLocation.city},{' '}
+                            {restaurantLocation.stateProvince}
+                        </div>
+                        <div>
+                            {restaurantLocation.country}{' '}
+                            {restaurantLocation.zipPostalCode}
+                        </div>
+                    </div>
+                ) : (
+                    'Location Not Available'
+                )}
+            </Address>
 
             <ButtonsContainer>
                 <AddReviewButton type="submit" onClick={handleAddReviewClick}>

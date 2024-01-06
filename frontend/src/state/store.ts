@@ -65,8 +65,9 @@ export const useStore = create<AppState>((set) => ({
         reviewText: string,
         rating: number,
     ) => {
+        set({ loading: true, error: null });
         try {
-            const { data } = await apolloClient.mutate({
+            await apolloClient.mutate({
                 mutation: ADD_REVIEW_MUTATION,
                 variables: {
                     restaurantId,
@@ -110,6 +111,7 @@ export const useStore = create<AppState>((set) => ({
                     }
                 }),
             }));
+            set({ loading: false, error: null });
         } catch (error) {
             console.error(`Error adding review: ${error}`);
             set({ error: error as ApolloError, loading: false });

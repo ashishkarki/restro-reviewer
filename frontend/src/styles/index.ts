@@ -137,6 +137,17 @@ export const RestaurantDetailsParagraph = styled.p`
     margin-bottom: 10px;
 `;
 
+export const RestaurantDetailsAddress = styled.div`
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ccd;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+`;
+
 export const RestaurantDetailsReviewItem = styled.li`
     margin-bottom: 5px;
     border: 1px solid #ccd; /* Add border for card-like appearance */

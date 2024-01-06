@@ -1,10 +1,10 @@
-import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 import { Location } from './location.entity';
 
 @ObjectType()
 export class Restaurant {
-  @Field(() => Int)
-  id: number;
+  @Field(() => String)
+  id: string;
 
   @Field()
   name: string;

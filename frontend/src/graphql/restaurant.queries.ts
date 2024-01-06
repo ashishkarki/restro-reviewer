@@ -6,7 +6,15 @@ export const GET_ALL_RESTAURANTS = gql`
             id
             name
             cuisine
-            location
+            location {
+                streetNumber
+                streetName
+                aptUnit
+                city
+                stateProvince
+                country
+                zipPostalCode
+            }
             reviews
             ratings
             averageRating
@@ -20,7 +28,15 @@ export const GET_RESTAURANT_BY_ID = gql`
             id
             name
             cuisine
-            location
+            location {
+                streetNumber
+                streetName
+                aptUnit
+                city
+                stateProvince
+                country
+                zipPostalCode
+            }
             reviews
             ratings
             averageRating

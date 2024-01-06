@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { plainToClass } from 'class-transformer';
 import * as AWS from 'aws-sdk';
 import { Restaurant } from 'src/restaurants/models/restaurant.entity';
 
@@ -55,7 +56,10 @@ export class DynamoDBService {
           },
         };
       });
-      console.log('Transformed Data:', dataWithMappedLocation);
+      // this.logger.log(
+      //   'DynamoDBService: getAllRestaurants: Transformed Data:',
+      //   dataWithMappedLocation,
+      // );
 
       return dataWithMappedLocation as Restaurant[];
     } catch (error) {
@@ -116,18 +120,16 @@ export class DynamoDBService {
         ':ratings': updatedRatings,
         ':averageRating': updatedAverageRating,
       },
-      //   ReturnValues: 'ALL_NEW',
+      ReturnValues: 'ALL_NEW',
     };
 
-    // const data = await this.dynamoDB.update(params).promise();
-    // return data.Attributes as Restaurant;
-
-    await this.dynamoDB.update(params).promise();
-    return {
-      ...reviewedRestaurant,
-      reviews: updatedReviews,
-      ratings: updatedRatings,
-      averageRating: updatedAverageRating,
-    } as Restaurant;
+    const data = await this.dynamoDB.update(params).promise();
+    return plainToClass(Restaurant, data.Attributes);
+    // return {
+    //   ...reviewedRestaurant,
+    //   reviews: updatedReviews,
+    //   ratings: updatedRatings,
+    //   averageRating: updatedAverageRating,
+    // } as Restaurant;
   }
 }

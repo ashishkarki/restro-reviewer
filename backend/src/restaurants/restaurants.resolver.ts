@@ -20,6 +20,7 @@ export class RestaurantsResolver {
   async restaurant(
     @Args('id', { type: () => String }) id: string,
   ): Promise<Restaurant> | undefined {
+    this.logger.log(`Fetching restaurant with id: ${id}`);
     return this.dynamoDBService.getRestaurantById(id);
   }
 }
