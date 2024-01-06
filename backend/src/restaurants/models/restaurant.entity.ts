@@ -13,7 +13,7 @@ export class Restaurant {
   cuisine: string;
 
   @Field(() => Location, { nullable: true })
-  location?: string;
+  location?: Location;
 
   @Field(() => [String], { nullable: true })
   reviews?: string[];

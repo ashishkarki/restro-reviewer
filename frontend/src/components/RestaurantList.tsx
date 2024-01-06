@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useMemo, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 import {
     Heading2,
@@ -7,7 +7,6 @@ import {
     RestaurantListItem as ListItem,
 } from '../styles';
 import { Link } from 'react-router-dom';
-import { useGetAllRestaurants } from '../state/storeSelectors';
 import { useStore } from '../state/store';
 import ErrorPage from './ErrorPage';
 

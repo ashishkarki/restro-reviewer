@@ -1,1 +1,1 @@
-export const RESTAURANT_TABLE_NAME = 'Restaurant';
+export const RESTAURANT_TABLE_NAME = 'Restaurants';

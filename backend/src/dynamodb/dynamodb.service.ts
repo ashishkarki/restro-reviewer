@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as AWS from 'aws-sdk';
 import { Restaurant } from 'src/restaurants/models/restaurant.entity';
 
@@ -7,6 +7,10 @@ import { RESTAURANT_TABLE_NAME } from 'src/utils';
 @Injectable()
 export class DynamoDBService {
   private readonly dynamoDB: AWS.DynamoDB.DocumentClient;
+  private readonly logger = new Logger(DynamoDBService.name);
+  private readonly databaseUrl = process.env.RUNNING_IN_DOCKER
+    ? 'http://dynamodb-local:8000'
+    : 'http://localhost:8000';
 
   constructor() {
     AWS.config.update({
@@ -16,7 +20,7 @@ export class DynamoDBService {
     });
 
     this.dynamoDB = new AWS.DynamoDB.DocumentClient({
-      endpoint: 'http://dynamodb-local:8000', // use DynamoDB on local instance
+      endpoint: this.databaseUrl,
     });
   }
 
@@ -24,9 +28,40 @@ export class DynamoDBService {
     const params = {
       TableName: RESTAURANT_TABLE_NAME,
     };
-    const data = await this.dynamoDB.scan(params).promise();
 
-    return data.Items as Restaurant[];
+    this.logger.log('Preparing to fetch all restaurants');
+    try {
+      this.logger.log(`Fetching restaurants from DynamoDB...`);
+      const data = await this.dynamoDB.scan(params).promise();
+      const dataWithMappedLocation = data.Items.map((item) => {
+        const {
+          streetNumber,
+          streetName,
+          city,
+          stateProvince,
+          country,
+          zipPostalCode,
+        } = item.location;
+
+        return {
+          ...item,
+          location: {
+            streetNumber,
+            streetName,
+            city,
+            stateProvince,
+            country,
+            zipPostalCode,
+          },
+        };
+      });
+      console.log('Transformed Data:', dataWithMappedLocation);
+
+      return dataWithMappedLocation as Restaurant[];
+    } catch (error) {
+      this.logger.error(`Error fetching restaurants: ${error}`);
+      throw error;
+    }
   }
 
   async getRestaurantById(id: string): Promise<Restaurant> {
@@ -36,9 +71,21 @@ export class DynamoDBService {
         id,
       },
     };
-    const data = await this.dynamoDB.get(params).promise();
 
-    return data.Item as Restaurant;
+    try {
+      this.logger.log(`Fetching restaurant with ID: ${id}`);
+      const data = await this.dynamoDB.get(params).promise();
+      if (data.Item) {
+        this.logger.log(`Restaurant with ID: ${id} fetched successfully`);
+        return data.Item as Restaurant;
+      } else {
+        this.logger.warn(`Restaurant with ID: ${id} not found`);
+        return null; // Or handle as per your application's requirement
+      }
+    } catch (error) {
+      this.logger.error(`Error fetching restaurant with ID: ${id}`, error);
+      throw error; // Or handle the error as appropriate for your application
+    }
   }
 
   async addReview(

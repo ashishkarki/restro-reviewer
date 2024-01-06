@@ -4,12 +4,16 @@
     "author": "Ashish Karki",
     "description": "Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript.",
     "scripts": {
-        "start": "docker-compose up -d --build --remove-orphans",
-        "stop": "docker-compose down",
+        "build": "docker-compose build --no-cache",
+        "start": "docker-compose up -d --remove-orphans",
+        "stop": "docker-compose down -v",
+        "stop:prune": "pnpm stop && docker system prune -a -f",
+        "restart": "pnpm run stop && pnpm run start",
+        "restart:build": "pnpm run stop && pnpm run build && pnpm run start",
+        "clean:start": "pnpm run stop:prune && pnpm run build && pnpm run start",
         "lint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet",
         "format": "prettier --write '*/**/*.{js,jsx,ts,tsx,json,css,md}'",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "echo \"Error: no build specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
