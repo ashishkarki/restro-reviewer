@@ -9,6 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useStore } from '../state/store';
 import ErrorPage from './ErrorPage';
+import LoadingIndicator from './LoadingIndicator';
 
 /**
  * Renders a list of restaurants.
@@ -25,7 +26,7 @@ const RestaurantList: React.FC = (): ReactElement => {
 
     if (loading) {
         // Render loading state
-        return <div>Loading...</div>;
+        return <LoadingIndicator />;
     }
 
     if (error) {
@@ -42,12 +43,10 @@ const RestaurantList: React.FC = (): ReactElement => {
                 {restaurants.map((restro) => (
                     <ListItem
                         key={restro.id}
-                        onClick={() => console.log(restro)}
-                    >
+                        onClick={() => console.log(restro)}>
                         <Link
                             to={`/restaurants/${restro.id}`}
-                            state={{ restaurant: restro }}
-                        >
+                            state={{ restaurant: restro }}>
                             {`${restro.name} - ${restro.cuisine}`}
                         </Link>
                     </ListItem>

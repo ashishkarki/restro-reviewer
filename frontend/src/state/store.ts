@@ -7,6 +7,7 @@ import {
 } from '../graphql/restaurant.queries';
 import { ApolloError } from '@apollo/client';
 import { ADD_REVIEW_MUTATION } from '../graphql/review.queries';
+import { getApolloClientOrLogError } from '../config';
 
 export type AppState = {
     restaurants: Restaurant[];
@@ -25,6 +26,11 @@ export const useStore = create<AppState>((set) => ({
 
     // actions to update the state above
     getRestaurants: async () => {
+        const apolloClient = getApolloClientOrLogError();
+        if (!apolloClient) {
+            return;
+        }
+
         set({ loading: true, error: null });
 
         try {
