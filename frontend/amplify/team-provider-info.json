@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-restroreviewer-dev-150635-authRole",
+      "UnauthRoleArn": "arn:aws:iam::147212183145:role/amplify-restroreviewer-dev-150635-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::147212183145:role/amplify-restroreviewer-dev-150635-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-restroreviewer-dev-150635-deployment",
+      "UnauthRoleName": "amplify-restroreviewer-dev-150635-unauthRole",
+      "StackName": "amplify-restroreviewer-dev-150635",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:147212183145:stack/amplify-restroreviewer-dev-150635/7ccddd80-aea4-11ee-beb2-022af06b5f93",
+      "AmplifyAppId": "d3i2cs91c3gbnm"
+    },
+    "categories": {
+      "auth": {
+        "restroreviewer639d0080": {}
+      }
+    }
+  }
+}

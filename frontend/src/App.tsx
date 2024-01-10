@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 import { GlobalStyles } from './styles';
 import Home from './components/Home';
@@ -49,4 +50,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App;
+export default withAuthenticator(App);

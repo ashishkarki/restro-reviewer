@@ -1,55 +1,68 @@
 # Restro Reviewer
 
-Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript.
+Restro Reviewer is a web application for reviewing and discovering restaurants. It consists of a frontend built with React and a backend built with NestJS, both using TypeScript and integrated with AWS Amplify.
 
 ## Features
 
-- View a list of restaurants.
-- View restaurant details including cuisine, location, ratings, and reviews.
-- Add reviews and ratings for restaurants.
-- Navigate between different sections of the application.
+-   View a list of restaurants.
+-   View restaurant details including cuisine, location, ratings, and reviews.
+-   Add reviews and ratings for restaurants.
+-   User authentication using AWS Cognito.
+-   Navigate between different sections of the application.
 
 ## Technologies Used
 
-- **Frontend**:
-  - React
-  - TypeScript
-  - React Router for navigation
-  - Zustand for state management
-  - Styled-components for styling
+-   **Frontend**:
 
-- **Backend**:
-  - NestJS
-  - TypeScript
-  - RESTful API for restaurant data
-  - Sample data provided
+    -   React with TypeScript
+    -   React Router for navigation
+    -   Zustand for state management
+    -   Styled-components for styling
+    -   AWS Amplify for authentication and backend integration
+    -   Dockerized for consistent development and deployment
+
+-   **Backend**:
+    -   NestJS with TypeScript
+    -   RESTful API for restaurant data
+    -   Integration with AWS services
+    -   Dockerized alongside frontend and database services
 
 ## Setup
 
 ### Frontend
 
 1. Navigate to the `frontend` directory.
-2. Run `npm install` to install dependencies.
-3. Run `npm start` to start the development server.
+2. Run `pnpm install` to install dependencies.
+3. Configure AWS Amplify as needed.
+4. Run `pnpm start` to start the development server.
 
 ### Backend
 
 1. Navigate to the `backend` directory.
-2. Run `npm install` to install dependencies.
-3. Run `npm run start` to start the NestJS backend server.
+2. Run `pnpm install` to install dependencies.
+3. Run `pnpm run start` to start the NestJS backend server.
+
+## Dockerized Environment
+
+The application is fully Dockerized, including the frontend, backend, and database services, ensuring a consistent development and deployment environment.
+
+### Running with Docker Compose
+
+1. Ensure Docker and Docker Compose are installed.
+2. Use `docker-compose up` to start the entire stack.
 
 ## REST API
 
-The backend provides a RESTful API for restaurant data. You can access it at `http://localhost:3000`.
+The backend provides a GraphQL API for restaurant data. You can access it at `http://localhost:4000/graphql`.
 
-- `/restaurants`: Get a list of all restaurants.
-- `/restaurants/:id`: Get details of a specific restaurant by ID.
+-   `/restaurants`: Get a list of all restaurants.
+-   `/restaurants/:id`: Get details of a specific restaurant by ID.
 
 ## Future Enhancements
 
-- Authentication and user accounts.
-- Integration with cloud services for data storage.
-- Improved UI and user experience.
+-   Integration with cloud services for data storage and processing.
+-   Improved UI and user experience.
+-   Expansion of restaurant data and features.
 
 ## Contributing
 
