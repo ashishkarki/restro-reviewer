@@ -8,10 +8,10 @@ import {
     BackButton,
     ActionButton as AddReviewButton,
     Heading3,
-} from '../styles';
+} from '../../styles';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { PATHS, renderStarRating } from '../utils';
-import Restaurant from '../models/Restaurant';
+import { PATHS, renderStarRating } from '../../utils';
+import Restaurant from '../../models/Restaurant';
 import { useEffect } from 'react';
 
 /**

@@ -4,8 +4,8 @@ import {
     Heading3,
     HomeParagraph as Paragraph,
     HomeLinkStyled as Link,
-} from '../styles';
-import { PATHS } from '../utils';
+} from '../../styles';
+import { PATHS } from '../../utils';
 
 const Home: React.FC = () => {
     return (

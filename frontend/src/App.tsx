@@ -1,16 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { withAuthenticator } from '@aws-amplify/ui-react';
 
 import { GlobalStyles } from './styles';
-import Home from './components/Home';
-import RestaurantList from './components/RestaurantList';
-import RestaurantDetails from './components/RestaurantDetails';
-import RestaurantReview from './components/RestaurantReview';
-import NavBar from './components/NavBar';
+import Home from './components/home';
+import RestaurantList from './components/restaurant-list';
+import RestaurantDetails from './components/restaurant-details';
+import RestaurantReview from './components/restaurant-review';
+import NavBar from './components/navbar';
 import { PATHS } from './utils';
 import { intializeConfig } from './config';
-import LoadingIndicator from './components/LoadingIndicator';
+import LoadingIndicator from './components/loading-indicator';
 
 const App: React.FC = () => {
     const [isConfigLoaded, setIsConfigLoaded] = useState(false);
@@ -50,4 +49,4 @@ const App: React.FC = () => {
     );
 };
 
-export default withAuthenticator(App);
+export default App;

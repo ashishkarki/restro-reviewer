@@ -27,6 +27,10 @@ Restro Reviewer is a web application for reviewing and discovering restaurants. 
     -   Integration with AWS services
     -   Dockerized alongside frontend and database services
 
+## Technical Overview
+
+For more details on the technical aspects and architecture of this project, see the [Technical Overview](TECHNICAL_OVERVIEW.md).
+
 ## Setup
 
 ### Frontend

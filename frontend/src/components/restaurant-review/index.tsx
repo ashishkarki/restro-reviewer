@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { PATHS } from '../utils';
+import { PATHS } from '../../utils';
 import {
     RestaurantReviewContainer as Container,
     RestaurantReviewForm as Form,
@@ -12,9 +12,9 @@ import {
     ActionButton as SubmitReviewButton,
     BackButton,
     RestaurantReviewNumberInput as NumberInput,
-} from '../styles';
-import Restaurant from '../models/Restaurant';
-import { useStore } from '../state/store';
+} from '../../styles';
+import Restaurant from '../../models/Restaurant';
+import { useStore } from '../../state/store';
 
 const RestaurantReview: React.FC<{}> = () => {
     const [reviewText, setReviewText] = useState<string>('');

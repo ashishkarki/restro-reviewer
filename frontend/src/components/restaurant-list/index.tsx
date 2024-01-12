@@ -5,11 +5,11 @@ import {
     RestaurantListContainer as Container,
     RestaurantList as List,
     RestaurantListItem as ListItem,
-} from '../styles';
+} from '../../styles';
 import { Link } from 'react-router-dom';
-import { useStore } from '../state/store';
-import ErrorPage from './ErrorPage';
-import LoadingIndicator from './LoadingIndicator';
+import { useStore } from '../../state/store';
+import ErrorPage from '../error-page';
+import LoadingIndicator from '../loading-indicator';
 
 /**
  * Renders a list of restaurants.

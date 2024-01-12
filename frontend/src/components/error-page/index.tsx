@@ -1,4 +1,4 @@
-import { ErrorContainer, ErrorMessage } from '../styles';
+import { ErrorContainer, ErrorMessage } from '../../styles';
 
 interface ErrorPageProps {
     error: Error;
