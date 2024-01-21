@@ -3,12 +3,13 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 let apolloClient: ApolloClient<any> | null = null;
 
 export const intializeConfig = async (): Promise<ApolloClient<any>> => {
-    const response = await fetch('../../config.json');
-    const config = await response.json();
+    // const response = await fetch('../../config.json');
+    // const config = await response.json();
 
     apolloClient = new ApolloClient({
         link: new HttpLink({
-            uri: config.API_URL,
+            uri: `http://localhost:4001/graphql`,
+            // config.API_URL,
         }),
         cache: new InMemoryCache(),
     });

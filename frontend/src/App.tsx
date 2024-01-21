@@ -10,6 +10,7 @@ import NavBar from './components/navbar';
 import { PATHS } from './utils';
 import { intializeConfig } from './config';
 import LoadingIndicator from './components/loading-indicator';
+import { RestroReviewerAuthenticator as Authenticator } from './components/auth';
 
 const App: React.FC = () => {
     const [isConfigLoaded, setIsConfigLoaded] = useState(false);
@@ -23,9 +24,8 @@ const App: React.FC = () => {
     }
 
     return (
-        <>
+        <Authenticator>
             <GlobalStyles />
-
             <Router>
                 <NavBar />
 
@@ -45,7 +45,7 @@ const App: React.FC = () => {
                     <Route path={PATHS.REVIEW} element={<RestaurantReview />} />
                 </Routes>
             </Router>
-        </>
+        </Authenticator>
     );
 };
 
