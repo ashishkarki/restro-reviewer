@@ -17,7 +17,6 @@ import LoadingIndicator from '../loading-indicator';
  * @return {ReactElement} The list of restaurants as a React element.
  */
 const RestaurantList: React.FC = (): ReactElement => {
-    // const restaurants = useGetAllRestaurants()
     const { restaurants, loading, error, getRestaurants } = useStore();
 
     useEffect(() => {

@@ -8,6 +8,7 @@ import {
 import { ApolloError } from '@apollo/client';
 import { ADD_REVIEW_MUTATION } from '../graphql/review.queries';
 import { getApolloClientOrLogError } from '../config';
+import { Auth } from 'aws-amplify';
 
 export type AppState = {
     restaurants: Restaurant[];
@@ -16,6 +17,13 @@ export type AppState = {
     getRestaurants: () => Promise<void>;
     getRestaurantById: (id: number) => Promise<Restaurant | undefined>;
     addReview: (restaurantId: number, review: string, rating: number) => void;
+
+    // user state and actions
+    currentUser: any;
+    isAdmin: boolean;
+    setCurrentUser: (user: any) => void;
+    checkAdminStatus: () => Promise<void>;
+    signOut: () => Promise<void>;
 };
 
 export const useStore = create<AppState>((set) => ({
@@ -121,6 +129,37 @@ export const useStore = create<AppState>((set) => ({
         } catch (error) {
             console.error(`Error adding review: ${error}`);
             set({ error: error as ApolloError, loading: false });
+        }
+    },
+
+    // user state and actions
+    currentUser: null,
+    isAdmin: false,
+    setCurrentUser: (user: any) => set({ currentUser: user }),
+    checkAdminStatus: async () => {
+        try {
+            const currentUser = await Auth.currentAuthenticatedUser();
+            const groups =
+                currentUser.signInUserSession.accessToken.payload[
+                    'cognito:groups'
+                ] || [];
+
+            const isUserAnAdmin = groups.includes(
+                'restroreviewer_userpool_admins',
+            );
+
+            set({ isAdmin: isUserAnAdmin });
+        } catch (error: any) {
+            console.error(`Error checking if user is admin: ${error}`);
+            set({ isAdmin: false });
+        }
+    },
+    signOut: async () => {
+        try {
+            await Auth.signOut();
+            // Handle post-sign-out logic here, like redirecting to the sign-in page
+        } catch (error) {
+            console.error('Error signing out user', error);
         }
     },
 }));

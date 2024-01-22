@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
-import { Heading1 } from '../../styles';
 import '@aws-amplify/ui-react/styles.css';
 
 type AuthenticatorProps = {
