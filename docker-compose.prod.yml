@@ -1,21 +1,36 @@
 version: '3'
 services:
-  dynamodb-local:
-    image: amazon/dynamodb-local
-    container_name: dynamodb-local
-    ports:
-      - '8000:8000'
-    volumes:
-      - './data:/home/dynamodblocal/data'
-    command: '-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data'
+    dynamodb-local:
+        image: amazon/dynamodb-local
+        container_name: dynamodb-local
+        ports:
+            - '8000:8000'
+        command: '-jar DynamoDBLocal.jar -sharedDb'
+        restart: always
 
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend
-    ports:
-      - '4000:4000'
-    environment:
-      - NODE_ENV=production
-    # TODO: add production specific variables, configurations etc later
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: backend
+        ports:
+            - '4000:4000'
+        environment:
+            - NODE_ENV=production
+            - RUNNING_IN_DOCKER=true
+        depends_on:
+            - dynamodb-local
+        restart: always
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        container_name: frontend
+        ports:
+            - '3000:80'
+        environment:
+            - NODE_ENV=development
+        depends_on:
+            - backend
+        restart: always

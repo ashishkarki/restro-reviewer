@@ -10,7 +10,12 @@ export async function checkAdminStatus(set: SetState<UserState>) {
                 'cognito:groups'
             ] || [];
 
-        const isUserAnAdmin = groups.includes('');
+        // get user group name from aws using env variables
+        const adminGroupName =
+            process.env
+                .REACT_APP_ADMIN_USER_GROUP_NAMEREACT_APP_ADMIN_USER_GROUP_NAME ||
+            '';
+        const isUserAnAdmin = groups.includes(adminGroupName);
 
         set({ currentUser: currentUser, isAdmin: isUserAnAdmin, error: null });
     } catch (error: any) {

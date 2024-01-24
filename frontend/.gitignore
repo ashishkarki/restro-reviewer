@@ -43,3 +43,8 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+# ignore all .env files
+.env.*
+# but keep the .env.template file
+!.env.template

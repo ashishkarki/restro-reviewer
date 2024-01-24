@@ -8,6 +8,7 @@ services:
         volumes:
             - './data:/home/dynamodblocal/data'
         command: '-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data'
+        restart: on-failure
 
     backend:
         build:
@@ -25,6 +26,7 @@ services:
         # command: pnpm run start:dev
         depends_on:
             - dynamodb-local
+        restart: on-failure
 
     frontend:
         build:
@@ -41,3 +43,4 @@ services:
         # command: pnpm run start:dev
         depends_on:
             - backend
+        restart: on-failure

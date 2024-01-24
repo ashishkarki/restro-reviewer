@@ -1,0 +1,34 @@
+# General
+.git
+.gitignore
+.dockerignore
+node_modules
+npm-debug.log
+yarn-error.log
+.env*
+.DS_Store
+Thumbs.db
+__MACOSX
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+jspm_packages
+
+# Build outputs
+dist
+build
+out
+target
+
+# Editors
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+coverage
+.nyc_output

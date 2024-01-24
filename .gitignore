@@ -129,5 +129,11 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# my additions
+## my additions below this...
+
 data/
+
+# ignore all .env files
+.env.*
+# but keep the .env.template file
+!.env.template
